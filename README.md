@@ -27,3 +27,6 @@ A full-stack web application built for **Kuzenler Ekmek Fırını** (Çavuşlu, 
 
 3. Run the SQL schema and start the server:
    npm start
+
+
+LİVE:https://kuzenler-bakery.onrender.com/index.html
