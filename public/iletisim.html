@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/images/favicon.jpeg?v=2" />
+  <title>İletişim | Kuzenler Ekmek Fırını</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ORTAK NAVİGASYON PANELİ -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="/images/favicon.jpeg" alt="Kuzenler Ekmek Fırını Logo" class="logo-img" />
+        <div class="logo-text">
+          <strong>KUZENLER</strong>
+          <span>EKMEK FIRINI • GİRESUN</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-item">Ana Sayfa</a>
+        <a href="menu.html" class="nav-item">Fırın Menüsü</a>
+        <a href="takip.html" class="nav-item">Sipariş Takibi</a>
+        <a href="iletisim.html" class="nav-item active">İletişim</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" id="openCartBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span>Sepet</span>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+
+        <a href="admin.html" class="admin-link-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Yönetim</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SADECE İLETİŞİM EKRANI -->
+  <main class="main-stage contact-stage">
+    <div class="container view-container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <span class="kicker">GİRESUN ÇAVUŞLU</span>
+          <h2>İletişim ve Kurumsal Tedarik</h2>
+          <p class="contact-lead">
+            Özel gün toplu siparişleri, restoran/otel düzenli ekmek tedariki veya sorularınız için bize doğrudan mesaj bırakabilirsiniz.
+          </p>
+          
+          <div class="info-cards">
+            <div class="info-item address-card">
+              <div>
+                <strong>Adres</strong>
+                <span>Merkez, 28820 Çavuşlu/Görele/Giresun, Türkiye</span>
+              </div>
+              <a 
+                href="https://google.com/maps?fvr=1&pvq=CgwvZy8xMTNoMGN4ajA&vet=10CAAQoqAOahcKEwjwnsbauI-YAxUAAAAAHQAAAAAQKw..i&cs=1&um=1&ie=UTF-8&fb=1&gl=us&sa=X&ftid=0x40638832061ce115:0x26ab2aa80c83a462" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="directions-btn"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="3 11 22 2 13 21 11 13 3 11"/>
+                </svg>
+                <span>Yol Tarifi Al</span>
+              </a>
+            </div>
+
+            <div class="info-item">
+              <strong>Çalışma Saatleri</strong>
+              <span>Sabahın ilk ışığından gecenin son saatine kadar, 7/24 taze ve lezzetli</span>
+            </div>
+
+            <div class="info-item">
+              <strong>Telefon</strong>
+              <span>0 (543) 480 88 84</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <h3>Fırına Mesaj Gönderin</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="senderName">Adınız Soyadınız / İşletme Adı</label>
+              <input type="text" id="senderName" required placeholder="Adınız Soyadınız" />
+            </div>
+            <div class="form-group">
+              <label for="senderPhone">Telefon Numaranız</label>
+              <input type="tel" id="senderPhone" required placeholder="05XX XXX XX XX" />
+            </div>
+            <div class="form-group">
+              <label for="messageSubject">Konu</label>
+              <select id="messageSubject">
+                <option value="Genel İletişim">Genel Soru veya Öneri</option>
+                <option value="Kurumsal Tedarik">Kurumsal / Restoran Tedarik Başvurusu</option>
+                <option value="Özel Gün Organizasyon">Düğün / Mevlüt Toplu Tepsi Siparişi</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="messageText">Mesajınız</label>
+              <textarea id="messageText" rows="4" required placeholder="Mesajınızı buraya yazın..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary full-width">Mesajı Gönder</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- KALİTE, HİJYEN & SERTİFİKALAR ŞERİDİ -->
+      <section class="certificates-section">
+        <div class="certificates-header">
+          <span class="kicker">GÜVENİLİR ÜRETİM VE RESMİ BELGELER</span>
+          <h3>Hijyen, Kalite ve Standartlarımız</h3>
+        </div>
+
+        <div class="certificates-grid">
+          <div class="cert-card">
+            <div class="cert-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <div class="cert-body">
+              <span class="cert-badge">Resmi Denetimli</span>
+              <h4>Tarım ve Orman Bakanlığı İşletme Kayıt Belgesi</h4>
+              <p>Türk Gıda Kodeksi’ne uygun hijyenik üretim koşulları ve resmi gıda işletme onayına sahiptir.</p>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+              </svg>
+            </div>
+            <div class="cert-body">
+              <span class="cert-badge">Tescilli Lezzet</span>
+              <h4>Coğrafi İşaretli Çavuşlu Ekmeği Standardı</h4>
+              <p>Geleneksel ekşi maya kültürü, doğal un ve taş tabanlı meşe odunu fırın reçetesine tam uyumludur.</p>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+            </div>
+            <div class="cert-body">
+              <span class="cert-badge">Aylık Kontrol</span>
+              <h4>Periyodik Hijyen ve İlaçlama Sertifikası</h4>
+              <p>Yetkili çevre sağlığı kuruluşları tarafından düzenli aylık dezenfeksiyon ve haşere kontrolü yapılmaktadır.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- ORTAK SEPET ÇEKMECESİ -->
+  <div id="cartModal" class="drawer-backdrop hidden">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div>
+          <h3>Sipariş Sepeti</h3>
+          <small>Kuzenler Ekmek Fırını • Giresun</small>
+        </div>
+        <button id="closeCartBtn" class="close-btn">&times;</button>
+      </div>
+      
+      <div id="cartItemsContainer" class="cart-items"></div>
+      
+      <div class="cart-summary">
+        <div class="cart-total-row">
+          <span>Toplam Tutar</span>
+          <strong id="cartTotalPrice">0.00 TL</strong>
+        </div>
+      </div>
+
+      <form id="checkoutForm" class="checkout-form">
+        <h4>Teslimat Bilgileri</h4>
+        <div class="form-row">
+          <input type="text" id="custName" placeholder="Adınız Soyadınız" required />
+          <input type="tel" id="custPhone" placeholder="Telefon (05XX...)" required />
+        </div>
+
+        <select id="deliveryType">
+          <option value="gel-al">Dükkandan Gel-Al</option>
+          <option value="adres">Adrese Teslimat (Çavuşlu / Görele)</option>
+        </select>
+        <input type="text" id="deliveryAddress" class="hidden" placeholder="Açık Teslimat Adresiniz..." />
+
+        <select id="orderTiming">
+          <option value="hemen">Hemen / Gün İçi Teslimat</option>
+          <option value="ileri">İleri Tarihli / Özel Gün Siparişi</option>
+        </select>
+
+        <div id="scheduleFields" class="form-row hidden">
+          <input type="date" id="pickupDate" />
+          <input type="time" id="pickupTime" />
+        </div>
+
+        <input type="text" id="eventNote" placeholder="Sipariş Notu (İsteğe bağlı)" />
+        <button type="submit" class="btn btn-primary full-width">Siparişi Tamamla</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

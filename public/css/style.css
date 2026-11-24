@@ -1,0 +1,1364 @@
+:root {
+  --sea-deep: #12383A;       /* Karadeniz deniz-çam yeşili */
+  --sea-mid: #1F5457;        /* Sisli mavi-yeşil */
+  --sea-soft: #E3EEED;       /* Yumuşak deniz sisi */
+  --wood-dark: #261911;      /* Yanık meşe / ana metin */
+  --wood-warm: #5E3A22;      /* Meşe odunu kahvesi */
+  --wood-copper: #B56934;    /* Taş fırın ateşi / bakır */
+  --bg-parchment: #F7F4ED;   /* Doğal parşömen arka plan */
+  --bg-white: #FFFFFF;
+  --text-muted: #5C5852;
+  --border: #DDD6C9;
+  --fire-red: #B83728;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-parchment);
+  color: var(--wood-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, .logo-text strong {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ========================================================
+   NAVİGASYON PANELİ
+   ======================================================== */
+.navbar {
+  background: var(--bg-white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(38, 25, 17, 0.04);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 76px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.logo-img {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 3px 10px rgba(38, 25, 17, 0.08);
+  flex-shrink: 0;
+}
+
+.logo-text strong {
+  display: block;
+  font-size: 1.3rem;
+  letter-spacing: 1.4px;
+  line-height: 1.1;
+  color: var(--sea-deep);
+}
+
+.logo-text span {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: var(--wood-warm);
+}
+
+.nav-links {
+  display: flex;
+  gap: 6px;
+  background: var(--bg-parchment);
+  padding: 5px;
+  border-radius: 50px;
+  border: 1px solid var(--border);
+}
+
+.nav-item {
+  text-decoration: none;
+  display: inline-block;
+  padding: 9px 18px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--wood-dark);
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  color: var(--sea-deep);
+}
+
+.nav-item.active {
+  background: var(--sea-deep);
+  color: #fff;
+  box-shadow: 0 3px 10px rgba(18, 56, 58, 0.2);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-parchment);
+  border: 1px solid var(--border);
+  color: var(--wood-dark);
+  padding: 9px 16px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.cart-btn:hover {
+  border-color: var(--sea-deep);
+}
+
+.cart-badge {
+  background: var(--wood-copper);
+  color: #fff;
+  font-size: 0.74rem;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.admin-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--wood-warm);
+  color: #fff;
+  text-decoration: none;
+  padding: 9px 16px;
+  border-radius: 50px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.admin-link-btn:hover {
+  background: var(--wood-dark);
+}
+
+/* ========================================================
+   GENEL SAHNE & BUTONLAR
+   ======================================================== */
+.main-stage {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-container {
+  padding-top: 44px;
+  padding-bottom: 64px;
+}
+
+.centered-view {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+.kicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  color: var(--wood-copper);
+  margin-bottom: 4px;
+}
+
+.kicker.light {
+  color: #E8BA8E;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 13px 26px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--sea-deep);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--sea-mid);
+  transform: translateY(-1px);
+}
+
+.btn-wood {
+  background: var(--bg-white);
+  color: var(--wood-warm);
+  border: 1.5px solid var(--wood-warm);
+}
+
+.btn-wood:hover {
+  background: var(--wood-warm);
+  color: #fff;
+}
+
+.btn-copper {
+  background: var(--wood-copper);
+  color: #fff;
+}
+
+.btn-copper:hover {
+  background: #9B5627;
+}
+
+.btn-secondary-glass {
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+}
+
+.btn-secondary-glass:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* ========================================================
+   ANA SAYFA VİTRİNİ & MÜŞTERİ YORUMLARI
+   ======================================================== */
+.hero-stage {
+  justify-content: center;
+  background-image: 
+    linear-gradient(rgba(16, 36, 35, 0.56), rgba(32, 20, 13, 0.68)),
+    url('/images/firin-ic.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero-centered {
+  text-align: center;
+  max-width: 1120px;
+  padding: 68px 24px 76px;
+}
+
+.hero-intro {
+  max-width: 780px;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--sea-soft);
+  color: var(--sea-deep);
+  padding: 7px 16px;
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  border: 1px solid rgba(18, 56, 58, 0.14);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--wood-copper);
+  border-radius: 50%;
+}
+
+.hero-title,
+.hero-centered h1 {
+  font-size: 3.3rem;
+  line-height: 1.15;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  text-shadow: 0 3px 16px rgba(0, 0, 0, 0.45);
+  word-break: keep-all;
+}
+
+.hero-centered h1 em {
+  color: #E8BA8E;
+  font-style: italic;
+}
+
+.hero-desc {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto 14px;
+  color: #F4EFE6;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+}
+
+.hero-slogan {
+  font-size: 0.96rem;
+  font-weight: 700;
+  color: #F4A261;
+  letter-spacing: 0.3px;
+  margin-bottom: 34px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 76px;
+}
+
+.hero-btn {
+  min-width: 225px;
+  height: 50px;
+  padding: 0 26px;
+  font-size: 0.96rem;
+}
+
+.reviews-section {
+  text-align: left;
+  padding-top: 44px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.reviews-header h3 {
+  color: #FFFFFF;
+  font-size: 1.65rem;
+  font-weight: 600;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.review-card {
+  height: 100%;
+  background: rgba(255, 255, 255, 0.97);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--wood-copper);
+  border-radius: 12px;
+  padding: 26px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.review-stars {
+  color: #D97706;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.review-text {
+  font-size: 0.96rem;
+  color: var(--wood-dark);
+  line-height: 1.65;
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
+.review-author {
+  padding-top: 10px;
+  border-top: 1px solid var(--bg-parchment);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.review-author strong {
+  font-size: 0.88rem;
+  color: var(--sea-deep);
+}
+
+.review-author span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* ========================================================
+   MENÜ EKRANI
+   ======================================================== */
+.view-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.view-top-bar h2 {
+  font-size: 2.2rem;
+  color: var(--wood-dark);
+}
+
+.tray-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-white);
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--wood-warm);
+  cursor: pointer;
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.tab-btn {
+  padding: 9px 18px;
+  border: 1px solid var(--border);
+  background: var(--bg-white);
+  color: var(--wood-dark);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.88rem;
+  transition: 0.2s;
+}
+
+.tab-btn:hover {
+  border-color: var(--sea-deep);
+}
+
+.tab-btn.active {
+  background: var(--sea-deep);
+  color: #fff;
+  border-color: var(--sea-deep);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  gap: 24px;
+}
+
+.product-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(38, 25, 17, 0.07);
+}
+
+.hot-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--fire-red);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  z-index: 2;
+}
+
+.product-img-wrap {
+  width: 100%;
+  height: 195px;
+  background: linear-gradient(135deg, var(--sea-soft), #EAE3D5);
+  overflow: hidden;
+}
+
+.product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-body h3 {
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+  color: var(--wood-dark);
+}
+
+.product-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.product-price-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid var(--bg-parchment);
+  margin-bottom: 12px;
+}
+
+.product-price {
+  font-weight: 700;
+  color: var(--sea-deep);
+  font-size: 1.1rem;
+}
+
+.tray-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--wood-warm);
+  background: var(--bg-parchment);
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+}
+
+.product-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.product-controls select {
+  flex: 1;
+  padding: 9px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+  background: var(--bg-parchment);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.add-btn {
+  background: var(--wood-warm);
+  color: #fff;
+  border: none;
+  padding: 9px 16px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.86rem;
+}
+
+.add-btn:hover {
+  background: var(--sea-deep);
+}
+
+/* ========================================================
+   SİPARİŞ TAKİBİ EKRANI
+   ======================================================== */
+.tracking-card {
+  width: 100%;
+  max-width: 620px;
+  background: var(--sea-deep);
+  color: #fff;
+  padding: 44px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 18px 36px rgba(18, 56, 58, 0.2);
+}
+
+.tracking-card h2 {
+  font-size: 2.1rem;
+  margin-bottom: 10px;
+}
+
+.tracking-card p {
+  color: #C5D7D8;
+  font-size: 0.95rem;
+}
+
+.tracking-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 26px;
+}
+
+.tracking-form input {
+  flex: 1;
+  padding: 13px 16px;
+  border-radius: 8px;
+  border: none;
+  background: var(--bg-parchment);
+  color: var(--wood-dark);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tracking-result {
+  margin-top: 22px;
+  padding: 18px;
+  background: var(--bg-parchment);
+  color: var(--wood-dark);
+  border-radius: 10px;
+  text-align: left;
+  border-left: 5px solid var(--wood-copper);
+}
+
+/* ========================================================
+   İLETİŞİM & SERTİFİKALAR EKRANI
+   ======================================================== */
+.contact-stage {
+  background-image: 
+    linear-gradient(rgba(18, 44, 42, 0.65), rgba(38, 25, 17, 0.72)),
+    url('/images/firin-dis.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-size: 2.1rem;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
+
+.contact-lead {
+  color: #E6E1D8;
+  margin-bottom: 26px;
+}
+
+.info-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.info-item {
+  background: var(--bg-white);
+  padding: 18px 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.info-item strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--sea-deep);
+  margin-bottom: 2px;
+}
+
+.info-item span {
+  font-size: 0.92rem;
+  color: var(--wood-dark);
+}
+
+.address-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.address-card .directions-btn,
+.address-card .directions-btn:visited {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--wood-copper);
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(181, 105, 52, 0.25);
+  transition: all 0.2s ease;
+}
+
+.address-card .directions-btn:hover {
+  background-color: var(--sea-deep);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+.contact-form-card {
+  background: var(--bg-white);
+  padding: 32px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.contact-form-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--sea-deep);
+}
+
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-parchment);
+  font-family: inherit;
+}
+
+.certificates-section {
+  margin-top: 52px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.certificates-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.certificates-header .kicker {
+  color: #E8BA8E;
+}
+
+.certificates-header h3 {
+  color: #FFFFFF;
+  font-size: 1.65rem;
+}
+
+.certificates-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cert-card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--sea-deep);
+  border-radius: 12px;
+  padding: 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.cert-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--sea-soft);
+  color: var(--sea-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cert-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--wood-copper);
+  background: #FDF3EC;
+  border: 1px solid #F3D5BE;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.cert-body h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.05rem;
+  color: var(--wood-dark);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.cert-body p {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ========================================================
+   SEPET ÇEKMECESİ
+   ======================================================== */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 56, 58, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 200;
+}
+
+.drawer-panel {
+  background: var(--bg-parchment);
+  width: 100%;
+  max-width: 450px;
+  height: 100%;
+  padding: 26px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.drawer-header h3 {
+  font-size: 1.45rem;
+  color: var(--sea-deep);
+}
+
+.drawer-header small {
+  color: var(--wood-warm);
+  font-weight: 600;
+}
+
+.close-btn {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.cart-items {
+  flex: 1;
+}
+
+.cart-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-white);
+  padding: 11px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.cart-summary {
+  background: var(--sea-soft);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin: 14px 0;
+}
+
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  color: var(--sea-deep);
+}
+
+.checkout-form h4 {
+  font-size: 0.98rem;
+  margin-bottom: 10px;
+}
+
+.checkout-form input,
+.checkout-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 9px;
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  background: var(--bg-white);
+  font-family: inherit;
+}
+
+.form-row {
+  display: flex;
+  gap: 8px;
+}
+
+/* ========================================================
+   TABLET & MOBİL RESPONSIVE UYUMLULUK
+   ======================================================== */
+@media (max-width: 860px) {
+  .nav-container {
+    height: auto;
+    flex-wrap: wrap;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    gap: 10px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+
+  .nav-item {
+    flex: 1;
+    text-align: center;
+    padding: 8px 10px;
+    font-size: 0.84rem;
+    white-space: nowrap;
+  }
+
+  .reviews-grid,
+  .certificates-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero-title,
+  .hero-centered h1 {
+    font-size: 2.4rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .logo-text strong {
+    font-size: 1.12rem;
+  }
+
+  .logo-text span {
+    font-size: 0.6rem;
+    letter-spacing: 1px;
+  }
+
+  .logo-img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cart-btn,
+  .admin-link-btn {
+    padding: 7px 12px;
+    font-size: 0.8rem;
+  }
+
+  .hero-centered {
+    padding: 44px 16px 56px;
+  }
+
+  .eyebrow {
+    font-size: 0.74rem;
+    padding: 6px 12px;
+  }
+
+  .hero-title,
+  .hero-centered h1 {
+    font-size: 1.72rem;
+    line-height: 1.25;
+  }
+
+  .hero-title br {
+    display: none;
+  }
+
+  .hero-desc {
+    font-size: 0.94rem;
+  }
+
+  .hero-slogan {
+    font-size: 0.9rem;
+    margin-bottom: 26px;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 52px;
+  }
+
+  .hero-btn {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .reviews-section {
+    padding-top: 32px;
+  }
+
+  .reviews-header h3 {
+    font-size: 1.38rem;
+  }
+
+  .view-container {
+    padding-top: 28px;
+    padding-bottom: 44px;
+  }
+
+  .view-top-bar h2 {
+    font-size: 1.65rem;
+  }
+
+  .category-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tab-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 8px 14px;
+    font-size: 0.84rem;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tracking-card {
+    padding: 28px 20px;
+  }
+
+  .tracking-card h2 {
+    font-size: 1.65rem;
+  }
+
+  .tracking-form {
+    flex-direction: column;
+  }
+
+  .tracking-form button {
+    width: 100%;
+  }
+
+  .contact-info h2 {
+    font-size: 1.7rem;
+  }
+
+  .address-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .address-card .directions-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .contact-form-card {
+    padding: 22px 18px;
+  }
+
+  .drawer-panel {
+    max-width: 100%;
+    padding: 20px 16px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* SİPARİŞ TAKİBİ ARKA PLAN & BULANIKLIK KATMANI */
+.tracking-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.tracking-stage::before {
+  content: "";
+  position: absolute;
+  inset: -16px; /* Kenarlarda beyaz bulanıklık boşluğu kalmaması için */
+  background-image: 
+    linear-gradient(rgba(18, 44, 42, 0.55), rgba(38, 25, 17, 0.65)),
+    url('/images/takip-bg.png'); /* <-- KOYACAĞIN RESMİN ADINI BURAYA YAZ */
+  background-size: cover;
+  background-position: center;
+  filter: blur(6px); /* Bulanıklık şiddeti (4px - 8px arası idealdir) */
+  z-index: 0;
+}
+
+.tracking-stage .centered-view {
+  position: relative;
+  z-index: 1;
+}
+
+/* ========================================================
+   YÖNETİM PANELİ (ADMIN.HTML) STİLLERİ
+   ======================================================== */
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.admin-stat-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--sea-deep);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+
+.admin-stat-card span {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.admin-stat-card strong {
+  font-size: 1.75rem;
+  color: var(--wood-dark);
+}
+
+.admin-panel-box {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.admin-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.admin-box-header h3 {
+  color: var(--sea-deep);
+  font-size: 1.35rem;
+}
+
+.admin-products-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.admin-item-card {
+  background: var(--bg-parchment);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.admin-item-info h4 {
+  font-size: 1.05rem;
+  color: var(--wood-dark);
+  margin-bottom: 4px;
+}
+
+.admin-item-info p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.admin-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.admin-select {
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg-white);
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.84rem;
+}
+
+.btn-sm {
+  padding: 7px 12px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn-fresh-on { background: var(--fire-red); color: #fff; }
+.btn-fresh-off { background: #E5E0D8; color: var(--wood-dark); }
+.btn-edit { background: var(--sea-deep); color: #fff; }
+.btn-delete { background: #DC2626; color: #fff; }
+
+@media (max-width: 860px) {
+  .admin-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .admin-products-layout { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .admin-stats-grid { grid-template-columns: 1fr; }
+}
+
+/* ========================================================
+   KULLANICI GİRİŞ / KAYIT & HESABIM MODALI
+   ======================================================== */
+.auth-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 56, 58, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 250;
+}
+
+.auth-modal-box {
+  background: var(--bg-white);
+  width: 100%;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 14px;
+  padding: 26px;
+  border: 1px solid var(--border);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 10px;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 9px;
+  border: 1px solid var(--border);
+  background: var(--bg-parchment);
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--wood-dark);
+}
+
+.auth-tab-btn.active {
+  background: var(--sea-deep);
+  color: #fff;
+  border-color: var(--sea-deep);
+}

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/images/favicon.jpeg?v=2" />
+  <title>Yönetim Paneli | Kuzenler Ekmek Fırını</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ÜST NAVİGASYON -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="/images/favicon.jpeg" alt="Kuzenler Ekmek Fırını Logo" class="logo-img" />
+        <div class="logo-text">
+          <strong>KUZENLER</strong>
+          <span>YÖNETİM PANELİ • GİRESUN</span>
+        </div>
+      </a>
+
+      <div class="nav-actions">
+        <a href="index.html" class="cart-btn" style="text-decoration: none;">← Siteye Dön</a>
+        <button id="openChangePassBtn" class="cart-btn hidden" style="cursor: pointer;">Şifre Değiştir</button>
+        <button id="logoutBtn" class="admin-link-btn hidden" style="border: none; cursor: pointer;">Çıkış Yap</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. GİRİŞ EKRANI (LOGIN) -->
+  <!-- 1. GİRİŞ EKRANI (LOGIN) -->
+  <main id="loginSection" class="main-stage centered-view">
+    <div class="tracking-card" style="max-width: 440px;">
+      <span class="kicker light">YETKİLİ GİRİŞİ</span>
+      <h2>Fırın Yönetim Paneli</h2>
+      <p>Ürün, fiyat ve müşteri siparişlerini yönetmek için yönetici şifrenizi girin.</p>
+      
+      <form id="adminLoginForm" class="tracking-form" style="flex-direction: column;">
+        <input type="password" id="adminPasswordInput" placeholder="Yönetici Şifresi" required />
+        <button type="submit" class="btn btn-copper full-width">Panele Giriş Yap</button>
+      </form>
+      <p id="loginErrorMsg" class="hidden" style="color: #F4A261; margin-top: 12px; font-weight: 600;"></p>
+
+      <!-- SADECE ?kurtarma=1 PARAMETRESİYLE AÇILAN GİZLİ KURTARMA FORMU -->
+      <div id="recoveryBox" class="hidden" style="margin-top: 22px; padding-top: 18px; border-top: 1px dashed rgba(255,255,255,0.25);">
+        <span class="kicker light">YÖNETİCİ ŞİFRE KURTARMA</span>
+        <form id="adminRecoveryForm" class="tracking-form" style="flex-direction: column; margin-top: 10px;">
+          <input type="password" id="recoveryKeyInput" placeholder="Fırın Kurtarma Anahtarı" required />
+          <input type="password" id="recoveryNewPassInput" placeholder="Yeni Yönetici Şifresi (En az 6 karakter)" minlength="6" required />
+          <button type="submit" class="btn btn-wood full-width">Şifreyi Sıfırla</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- 2. YÖNETİM PANELİ (DASHBOARD) -->
+  <main id="dashboardSection" class="main-stage hidden">
+    <div class="container view-container">
+      
+      <!-- ÜST İSTATİSTİK KARTLARI -->
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <span>Aktif Siparişler</span>
+          <strong id="statActiveOrders">0</strong>
+        </div>
+        <div class="admin-stat-card">
+          <span>Bugünkü Ciro</span>
+          <strong id="statTodayRevenue">0.00 TL</strong>
+        </div>
+        <div class="admin-stat-card">
+          <span>En Çok Tercih Edilen</span>
+          <strong id="statTopProduct" style="font-size: 1.15rem;">-</strong>
+        </div>
+        <div class="admin-stat-card">
+          <span>Menüdeki Ürünler</span>
+          <strong id="statTotalProducts">0</strong>
+        </div>
+        <div class="admin-stat-card">
+          <span>Fırından Yeni Çıkan</span>
+          <strong id="statFreshProducts">0</strong>
+        </div>
+        <div class="admin-stat-card">
+          <span>Gelen Mesajlar</span>
+          <strong id="statTotalMessages">0</strong>
+        </div>
+      </div>
+
+      <!-- PANEL SEKMELERİ -->
+      <div class="category-tabs" style="margin-top: 28px;">
+        <button class="tab-btn active" data-admin-tab="ordersTab">Sipariş Yönetimi</button>
+        <button class="tab-btn" data-admin-tab="productsTab">Ürün & Fiyat Yönetimi</button>
+        <button class="tab-btn" data-admin-tab="messagesTab">Gelen Mesajlar</button>
+      </div>
+
+      <!-- SEKME 1: SİPARİŞLER -->
+      <section id="ordersTab" class="admin-tab-content">
+        <div class="admin-panel-box">
+          <div class="admin-box-header">
+            <h3>Gelen Müşteri Siparişleri</h3>
+            <button id="refreshOrdersBtn" class="btn btn-wood" style="padding: 8px 14px; font-size: 0.84rem;">Yenile</button>
+          </div>
+          <div id="adminOrdersList" class="admin-list"></div>
+        </div>
+      </section>
+
+      <!-- SEKME 2: ÜRÜNLER (EKLE / GÜNCELLE / SİL) -->
+      <section id="productsTab" class="admin-tab-content hidden">
+        <div class="admin-products-layout">
+          <div class="admin-panel-box">
+            <h3 id="productFormTitle" style="margin-bottom: 16px; color: var(--sea-deep);">Yeni Ürün Ekle</h3>
+            <form id="productForm">
+              <input type="hidden" id="editProductId" />
+              
+              <div class="form-group">
+                <label for="prodName">Ürün Adı</label>
+                <input type="text" id="prodName" placeholder="Örn: Coğrafi İşaretli Çavuşlu Ekmeği" required />
+              </div>
+
+              <div class="form-group">
+                <label for="prodCategory">Kategori</label>
+                <select id="prodCategory">
+                  <option value="Ekmekler">Ekmekler</option>
+                  <option value="Pideler">Pideler</option>
+                  <option value="Tepsi Lezzetleri">Tepsi Lezzetleri</option>
+                  <option value="Tatlı & Börek">Tatlı & Börek</option>
+                </select>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group" style="flex: 1;">
+                  <label for="prodPrice">Adet Fiyatı (TL)</label>
+                  <input type="number" id="prodPrice" step="0.01" placeholder="45.00" required />
+                </div>
+                <div class="form-group" style="flex: 1;">
+                  <label for="prodTrayPrice">Tepsi Fiyatı (Opsiyonel)</label>
+                  <input type="number" id="prodTrayPrice" step="0.01" placeholder="350.00" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="prodImageFile">Ürün Fotoğrafı Seç</label>
+                <input type="file" id="prodImageFile" accept="image/*" />
+                <input type="hidden" id="existingImageUrl" />
+                <small id="currentImageText" style="display: block; color: var(--text-muted); margin-top: 4px;"></small>
+              </div>
+
+              <div class="form-group">
+                <label for="prodDesc">Ürün Açıklaması</label>
+                <textarea id="prodDesc" rows="3" placeholder="Ekşi mayalı, odun ateşinde pişmiş..." required></textarea>
+              </div>
+
+              <div class="form-group" style="display: flex; align-items: center; gap: 8px;">
+                <input type="checkbox" id="prodIsFresh" style="width: auto;" />
+                <label for="prodIsFresh" style="margin: 0; cursor: pointer;">"Fırından Yeni Çıktı" etiketi aktif olsun</label>
+              </div>
+
+              <div style="display: flex; gap: 8px; margin-top: 12px;">
+                <button type="submit" class="btn btn-primary full-width" id="saveProductBtn">Ürünü Kaydet</button>
+                <button type="button" class="btn btn-wood hidden" id="cancelEditBtn">İptal</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="admin-panel-box">
+            <h3 style="margin-bottom: 16px; color: var(--sea-deep);">Menüdeki Mevcut Ürünler</h3>
+            <div id="adminProductsList" class="admin-list"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKME 3: GELEN MESAJLAR -->
+      <section id="messagesTab" class="admin-tab-content hidden">
+        <div class="admin-panel-box">
+          <h3 style="margin-bottom: 16px; color: var(--sea-deep);">İletişim ve Kurumsal Tedarik Mesajları</h3>
+          <div id="adminMessagesList" class="admin-list"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- SADECE YETKİLİ YÖNETİCİ İÇİN ŞİFRE DEĞİŞTİRME MODALI -->
+  <div id="changePassModal" class="auth-modal-backdrop hidden">
+    <div class="auth-modal-box" style="max-width: 420px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">
+        <h3 style="color:var(--sea-deep); font-size:1.35rem;">Yönetici Şifresini Değiştir</h3>
+        <button id="closeChangePassBtn" class="close-btn">&times;</button>
+      </div>
+      <form id="changePassForm" class="checkout-form">
+        <input type="password" id="currentAdminPass" placeholder="Mevcut Şifreniz" required />
+        <input type="password" id="newAdminPass" placeholder="Yeni Şifre (En az 6 karakter)" minlength="6" required />
+        <input type="password" id="confirmAdminPass" placeholder="Yeni Şifre Tekrar" minlength="6" required />
+        <button type="submit" class="btn btn-primary full-width">Şifreyi Güncelle</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

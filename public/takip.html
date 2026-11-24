@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/images/favicon.jpeg?v=2" />
+  <title>Sipariş Takibi | Kuzenler Ekmek Fırını</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ORTAK NAVİGASYON PANELİ -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <img src="/images/favicon.jpeg" alt="Kuzenler Ekmek Fırını Logo" class="logo-img" />
+        <div class="logo-text">
+          <strong>KUZENLER</strong>
+          <span>EKMEK FIRINI • GİRESUN</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html" class="nav-item">Ana Sayfa</a>
+        <a href="menu.html" class="nav-item">Fırın Menüsü</a>
+        <a href="takip.html" class="nav-item active">Sipariş Takibi</a>
+        <a href="iletisim.html" class="nav-item">İletişim</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="cart-btn" id="openCartBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+            <path d="M3 6h18"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span>Sepet</span>
+          <span class="cart-badge" id="cartCount">0</span>
+        </button>
+
+        <a href="admin.html" class="admin-link-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+          <span>Yönetim</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- SADECE SİPARİŞ SORGULAMA EKRANI -->
+  <main class="main-stage tracking-stage">
+    <div class="container centered-view">
+      <div class="tracking-card">
+        <span class="kicker light">SİPARİŞ DURUMU</span>
+        <h2>Siparişimi Takip Et</h2>
+        <p>Takip kodunuzu (Örn: <strong>FRN-1001</strong>) veya kodu unuttuysanız sipariş verirken kullandığınız <strong>telefon numaranızı</strong> girerek siparişinizi sorgulayabilirsiniz.</p>
+        
+        <form id="trackingForm" class="tracking-form">
+          <input type="text" id="trackingCodeInput" placeholder="Takip Kodu (FRN-1001) veya Telefon (05XX...)" required />
+          <button type="submit" class="btn btn-copper">Sorgula</button>
+        </form>
+
+        <div id="trackingResult" class="tracking-result hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ORTAK SEPET ÇEKMECESİ -->
+  <div id="cartModal" class="drawer-backdrop hidden">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div>
+          <h3>Sipariş Sepeti</h3>
+          <small>Kuzenler Ekmek Fırını • Giresun</small>
+        </div>
+        <button id="closeCartBtn" class="close-btn">&times;</button>
+      </div>
+      
+      <div id="cartItemsContainer" class="cart-items"></div>
+      
+      <div class="cart-summary">
+        <div class="cart-total-row">
+          <span>Toplam Tutar</span>
+          <strong id="cartTotalPrice">0.00 TL</strong>
+        </div>
+      </div>
+
+      <form id="checkoutForm" class="checkout-form">
+        <h4>Teslimat Bilgileri</h4>
+        <div class="form-row">
+          <input type="text" id="custName" placeholder="Adınız Soyadınız" required />
+          <input type="tel" id="custPhone" placeholder="Telefon (05XX...)" required />
+        </div>
+
+        <select id="deliveryType">
+          <option value="gel-al">Dükkandan Gel-Al</option>
+          <option value="adres">Adrese Teslimat (Giresun Çavuşlu)</option>
+        </select>
+        <input type="text" id="deliveryAddress" class="hidden" placeholder="Açık Teslimat Adresiniz..." />
+
+        <select id="orderTiming">
+          <option value="hemen">Hemen / Gün İçi Teslimat</option>
+          <option value="ileri">İleri Tarihli / Özel Gün Siparişi</option>
+        </select>
+
+        <div id="scheduleFields" class="form-row hidden">
+          <input type="date" id="pickupDate" />
+          <input type="time" id="pickupTime" />
+        </div>
+
+        <input type="text" id="eventNote" placeholder="Sipariş Notu (İsteğe bağlı)" />
+        <button type="submit" class="btn btn-primary full-width">Siparişi Tamamla</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
