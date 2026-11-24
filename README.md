@@ -29,4 +29,4 @@ A full-stack web application built for **Kuzenler Ekmek Fırını** (Çavuşlu, 
    npm start
 
 
-LİVE:https://kuzenler-bakery.onrender.com/index.html
+LİVE:https://kuzenler-bakery.onrender.com
